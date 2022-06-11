@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    tools:context=".AddStadiumActivity">
+
+    <EditText
+
+        android:id="@+id/idSan"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_margin="5dp"
+
+        android:hint="Enter Id San"
+
+        android:importantForAutofill="no"
+
+        android:inputType="textPersonName" />
+
+
+
+    <!--EditText for adding employee phone-->
+
+    <EditText
+
+        android:id="@+id/id_ChuSan"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/idSan"
+
+        android:layout_margin="10dp"
+
+        android:hint="Enter Id ChuSan"
+
+        android:importantForAutofill="no"
+
+        android:inputType="phone" />
+
+
+
+    <!--EditText for adding employee address-->
+
+    <EditText
+
+        android:id="@+id/idTenChuSan"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/id_ChuSan"
+
+        android:layout_margin="10dp"
+
+        android:hint="Enter Name ChuSan"
+
+        android:inputType="textPostalAddress" />
+    <EditText
+
+        android:id="@+id/idTenSan"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/idTenChuSan"
+
+        android:layout_margin="10dp"
+
+        android:hint="Enter Name San"
+
+        android:inputType="textPostalAddress" />
+
+    <EditText
+
+        android:id="@+id/idGia"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/idTenSan"
+
+        android:layout_margin="10dp"
+
+        android:hint="Enter Gia"
+
+        android:inputType="textPostalAddress" />
+
+    <EditText
+
+        android:id="@+id/idDiaChi"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/idGia"
+
+        android:layout_margin="10dp"
+
+        android:hint="Enter Dia Chi"
+
+        android:inputType="textPostalAddress" />
+
+
+
+    <!--Button for adding data to Firebase-->
+
+    <Button
+
+        android:id="@+id/idBtnAddStadium"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/idDiaChi"
+
+        android:layout_margin="10dp"
+
+        android:text="Add Sân"
+
+        android:textAllCaps="false" />
+
+
+</RelativeLayout>
