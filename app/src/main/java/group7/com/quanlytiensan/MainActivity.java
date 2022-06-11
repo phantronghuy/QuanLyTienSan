@@ -42,15 +42,13 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
  static TextView txtChuSan;
-  public static String str="";
 
-   static  int j=1;
-   static int i=0;
-     public  static int size=0;
-     Button btnGoToBarChart ,btnAddSan;
-   public static HashMap<String,Integer> hmForMonth=new HashMap<>();
-    public static HashMap<String,String> sumMoneyForMonths=new HashMap<>();
-    public static HashMap<Integer,String> showTongTien=new HashMap<>();
+
+
+     Button btnGoToBarChart;
+
+
+
     public static HashMap<String,String> arlMonth=new HashMap<>();
     public static HashMap<String,San>  hashMapSan=new HashMap<>();
 
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnGoToBarChart=findViewById(R.id.btnGoToDrawBarChart);
-        btnAddSan=findViewById(R.id.btnGoToAddStadium);
+
         txtChuSan=findViewById(R.id.txtChuSan);
         lv=findViewById(R.id.lv1);
         arrayAdapter=new MyArrayAdapter(MainActivity.this,R.layout.custom_show_all_stadium,arlSan);
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!arlMonth.containsKey(snapshot.getKey())){
                     arlMonth.put(snapshot.getKey(),snapshot.getValue().toString());
-                    arrayAdapter.notifyDataSetChanged();
+                   arrayAdapter.notifyDataSetChanged();
                 }
 
 
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 if(arlMonth.containsKey(snapshot.getKey())){
                    arlMonth.remove(snapshot.getKey());
                    arlMonth.put(snapshot.getKey(),snapshot.getValue().toString());
-                    arrayAdapter.notifyDataSetChanged();
+                    //arrayAdapter.notifyDataSetChanged();
                 }
 
                 Log.e("arlChange",arlMonth.toString());
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 if(arlMonth.containsKey(snapshot.getKey())){
                     arlMonth.remove(snapshot.getKey());
-                    arrayAdapter.notifyDataSetChanged();
+                  //  arrayAdapter.notifyDataSetChanged();
 
                 }
 
@@ -146,15 +144,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnAddSan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent1=new Intent(MainActivity.this,AddStadiumActivity.class);
-                startActivity(intent1);
-                arrayAdapter.notifyDataSetChanged();
-            }
-        });
 
 
     }
@@ -222,7 +212,8 @@ public class MainActivity extends AppCompatActivity {
                 if(s!=null ){
                     boolean check=false;
                     arlSan.clear();
-                    if(s.getId_ChuSan().equals("1") && !hashMapSan.containsKey(s.getId_San())){
+               //    if(s.getId_ChuSan().equals("1") && !hashMapSan.containsKey(s.getId_San())){
+                    if(s.getId_ChuSan().equals("1") ){
                         hashMapSan.put(s.getId_San(),s);
                         check=true;
                     }
@@ -288,12 +279,25 @@ public class MainActivity extends AppCompatActivity {
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 San s= snapshot.getValue(San.class);
                 if(s!=null ){
-                    if(s.getId_ChuSan().equals("1") && hashMapSan.containsKey(s.getId_San())){
-                        arlSan.remove(s);
-                        arrayAdapter.notifyDataSetChanged();
-                        hashMapSan.remove(s.getId_San());
-                    }
+                    boolean check=false;
 
+                    if(s.getId_ChuSan().equals("1")){
+                        arlSan.clear();
+                        hashMapSan.remove(s.getId_San());
+                        check=true;
+                    }
+                    if(check==true) {
+                        for (Map.Entry<String, San> entry : hashMapSan.entrySet()) {
+
+                            arlSan.add(entry.getValue());
+
+                            Log.e("stadium", entry.toString());
+
+                        }
+                        arrayAdapter.notifyDataSetChanged();
+                        Log.e("arlCuaSan", arlSan.toString());
+
+                    }
                 }
             }
 
@@ -313,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        ShowAllStadium();
+
         super.onResume();
 
     }

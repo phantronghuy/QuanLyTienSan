@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuanLyTienSan">
-        <activity android:name=".AddStadiumActivity"></activity>
         <activity android:name=".DrawBarChartSumMoney" />
         <activity android:name=".MainActivity">
             <intent-filter>
